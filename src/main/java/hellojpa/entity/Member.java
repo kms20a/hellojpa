@@ -4,8 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Member {
@@ -20,8 +23,10 @@ public class Member {
 	@Enumerated(EnumType.STRING)
 	private MemberType meberType;
 	
-	@Column(name = "TEAM_ID")
-	private Long teamId;
+	//FetchType.EAGER(한번에 조인해서 가져오기), FetchType.LAZY(지연로딩)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "TEAM_ID")
+	private Team team;
 	
 	public Long getId() {
 		return id;
@@ -47,10 +52,10 @@ public class Member {
 	public void setMeberType(MemberType meberType) {
 		this.meberType = meberType;
 	}
-	public Long getTeamId() {
-		return teamId;
+	public Team getTeam() {
+		return team;
 	}
-	public void setTeamId(Long teamId) {
-		this.teamId = teamId;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 }

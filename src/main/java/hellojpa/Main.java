@@ -26,15 +26,16 @@ public class Main {
 			//회원저장
 			Member member = new Member();
 			member.setName("member1");
-			member.setTeamId(team.getId());
+			member.setTeam(team);
 			member.setMeberType(MemberType.USER);
 			em.persist(member);
 			
-			Member findMember = em.find(Member.class, member.getId());
-			Long teamId = findMember.getTeamId();
+			em.flush();
+			em.clear();
 			
-			Team findTeam = em.find(Team.class, teamId);
-			System.out.println(findTeam);
+			Member findMember = em.find(Member.class, member.getId());
+			Team findTeam = findMember.getTeam();
+//			System.out.println(findTeam);
 			
 			tx.commit();
 		} catch (Exception e) {
