@@ -6,6 +6,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import hellojpa.entity.Member;
+import hellojpa.entity.MemberType;
 
 public class Main {
 	public static void main(String[] args) {
@@ -19,6 +20,7 @@ public class Main {
 			Member member = new Member();
 			member.setId(100L);
 			member.setName("안녕하세요");
+			member.setMeberType(MemberType.ADMIN);
 			
 			em.persist(member);
 			
