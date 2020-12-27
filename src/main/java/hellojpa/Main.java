@@ -7,6 +7,7 @@ import javax.persistence.Persistence;
 
 import hellojpa.entity.Member;
 import hellojpa.entity.MemberType;
+import hellojpa.entity.Team;
 
 public class Main {
 	public static void main(String[] args) {
@@ -17,12 +18,23 @@ public class Main {
 		
 		tx.begin();
 		try {
-			Member member = new Member();
-			member.setId(100L);
-			member.setName("안녕하세요");
-			member.setMeberType(MemberType.ADMIN);
+			//팀저장
+			Team team = new Team();
+			team.setName("TeamA");
+			em.persist(team);
 			
+			//회원저장
+			Member member = new Member();
+			member.setName("member1");
+			member.setTeamId(team.getId());
+			member.setMeberType(MemberType.USER);
 			em.persist(member);
+			
+			Member findMember = em.find(Member.class, member.getId());
+			Long teamId = findMember.getTeamId();
+			
+			Team findTeam = em.find(Team.class, teamId);
+			System.out.println(findTeam);
 			
 			tx.commit();
 		} catch (Exception e) {

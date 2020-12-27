@@ -47,4 +47,10 @@ public class Member {
 	public void setMeberType(MemberType meberType) {
 		this.meberType = meberType;
 	}
+	public Long getTeamId() {
+		return teamId;
+	}
+	public void setTeamId(Long teamId) {
+		this.teamId = teamId;
+	}
 }
