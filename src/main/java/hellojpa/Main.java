@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import hellojpa.entity.Member;
 import hellojpa.entity.MemberType;
 import hellojpa.entity.Team;
+import hellojpa.repository.MemberRepository;
 
 public class Main {
 	public static void main(String[] args) {
